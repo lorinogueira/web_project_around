@@ -57,7 +57,7 @@
 
 @media screen and (max-width: 1024px) {
   .profile {
-    margin: 0 60px 40px;
+    margin: 0 60px 50px;
   }
 }
 
@@ -107,14 +107,14 @@
     margin: 0;
   }
   .profile__add-button {
-    margin: 0 auto 36px;
+    margin: 0 auto;
     width: 100%;
   }
 }
 
 @media screen and (max-width: 520px) {
   .profile {
-    margin: 0 19px 38px;
+    margin: 0 19px 36px;
   }
 }
 
