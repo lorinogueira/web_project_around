@@ -17,7 +17,7 @@
   grid-template-rows: auto auto;
   grid-template-areas:
     "name button"
-    "aboutme .";
+    "aboutme aboutme";
 }
 
 .profile__name {
@@ -53,4 +53,78 @@
   background-image: url(../images/add-button.png);
   background-repeat: no-repeat;
   background-position: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .profile {
+    margin: 0 60px 40px;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .profile__name {
+    font-size: 32px;
+    line-height: 36.63px;
+  }
+  .profile__edit-button {
+    margin: 8px 55px 0 0;
+  }
+}
+
+@media screen and (max-width: 798px) {
+  .profile__info {
+    grid-template-columns: 160px auto;
+  }
+  .profile__name {
+    margin: 0 10px 14px 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile {
+    flex-direction: column;
+    margin: 0 60px 38px;
+  }
+  .profile__avatar {
+    margin: 0 0 30px;
+  }
+  .profile__info {
+    grid-template-columns: auto auto;
+  }
+  .profile__name {
+    font-size: 27px;
+    line-height: 31.63px;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .profile__aboutme {
+    font-size: 14px;
+    line-height: 16.94px;
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .profile__edit-button {
+    margin: 0;
+  }
+  .profile__add-button {
+    margin: 0 auto 36px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .profile {
+    margin: 0 19px 38px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .profile__name {
+    font-size: 22px;
+    line-height: 26.63px;
+  }
+  .profile__aboutme {
+    font-size: 14px;
+    line-height: 16.94px;
+  }
 }
