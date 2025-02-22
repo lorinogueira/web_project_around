@@ -18,7 +18,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 430px;
+  max-width: 430px;
+  width: 88%;
   border-radius: 10px;
   box-shadow: 0px 0px 25px 0px #00000026;
   color: black;
@@ -65,11 +66,12 @@
 
 .popup__close-button {
   position: fixed;
-  top: -40px;
-  right: -40px;
+  top: -48px;
+  right: -48px;
   background-image: url(../images/close-button.png);
   background-repeat: no-repeat;
   background-position: center;
+  background-size: contain;
   background-color: rgba(0, 0, 0, 0);
   border: none;
   width: 40px;
@@ -79,4 +81,38 @@
 .popup__close-button:hover {
   opacity: 60%;
   cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .popup__title {
+    font-size: 21px;
+    line-height: 25.05px;
+    margin: 30px 29px 65px;
+  }
+  .popup__form {
+    margin: 0 29px;
+  }
+  .popup__close-button {
+    width: 26px;
+    height: 26px;
+    top: -50px;
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .popup__title {
+    font-size: 18px;
+    line-height: 21.78px;
+    margin: 25px 22px 76px;
+  }
+  .popup__form {
+    margin: 0 22px;
+  }
+  .popup__input_content_aboutme {
+    margin-bottom: 46px;
+  }
+  .popup__submit-button {
+    margin-bottom: 25px;
+  }
 }
