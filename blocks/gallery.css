@@ -49,9 +49,19 @@
   background-position: center;
 }
 
-@media screen and (max-width: 955px) {
+.gallery__photo-button:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
+
+.gallery__photo-button:active {
+  background-image: url(../images/solid-heart-button.png);
+  opacity: 100%;
+}
+
+@media screen and (max-width: 635px) {
   .gallery {
-    margin: 0 30px;
+    margin: 0 20px;
   }
 }
 
