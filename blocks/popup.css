@@ -58,6 +58,11 @@
   margin-bottom: 36px;
 }
 
+.popup__submit-button:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
 .popup__close-button {
   position: fixed;
   top: -40px;
@@ -69,4 +74,9 @@
   border: none;
   width: 40px;
   height: 40px;
+}
+
+.popup__close-button:hover {
+  opacity: 60%;
+  cursor: pointer;
 }
