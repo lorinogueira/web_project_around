@@ -1,6 +1,7 @@
 .gallery {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin: 0 auto;
   max-width: 880px;
   gap: 20px 17px;
@@ -46,4 +47,18 @@
   background-color: #fff;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+@media screen and (max-width: 955px) {
+  .gallery {
+    margin: 0 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+  }
 }
