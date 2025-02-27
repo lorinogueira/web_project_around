@@ -17,3 +17,4 @@ O **Around The U.S.** é uma página interativa onde os usuários podem adiciona
 - **Responsividade:** O design foi feito para ser responsivo, adaptando-se a diferentes tamanhos de tela, com no mínimo 320px de largura.
 
 ## 🌐 Acesse o site:
+https://lorinogueira.github.io/web_project_around/
