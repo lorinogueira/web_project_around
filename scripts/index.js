@@ -5,7 +5,7 @@ popups.forEach((popup) => popup.classList.remove("popup_opened"));
 const editProfilePopup = container.querySelector(
   ".popup_function_edit-profile"
 );
-const formElement = editProfilePopup.querySelector(".popup__form");
+const formProfile = editProfilePopup.querySelector(".popup__form");
 const nameInput = editProfilePopup.querySelector(".popup__input_content_name");
 const aboutmeInput = editProfilePopup.querySelector(
   ".popup__input_content_aboutme"
@@ -14,6 +14,9 @@ const nameProfile = container.querySelector(".profile__name");
 const aboutmeProfile = container.querySelector(".profile__aboutme");
 
 const addCardPopup = container.querySelector(".popup_function_add-card");
+const formCard = addCardPopup.querySelector(".popup__form");
+let titleInput = addCardPopup.querySelector(".popup__input_content_title-card");
+let linkInput = addCardPopup.querySelector(".popup__input_content_link");
 
 const editProfileButton = container.querySelector(".profile__edit-button");
 const closeEditProfileButton = editProfilePopup.querySelector(
@@ -49,17 +52,17 @@ const initialCards = [
   },
 ];
 
-initialCards.forEach((card) => {
-  //clonar o card template
+function loadCards(card) {
   const cardTemplate = document
     .querySelector("#card-template")
     .content.cloneNode("true");
-
   cardTemplate.querySelector(".gallery__photo-caption").textContent = card.name;
   cardTemplate.querySelector(".gallery__photo").setAttribute("src", card.link);
 
-  document.querySelector(".gallery").append(cardTemplate);
-});
+  document.querySelector(".gallery").prepend(cardTemplate);
+}
+
+initialCards.forEach(loadCards);
 
 function openOrCloseProfilePopup() {
   editProfilePopup.classList.toggle("popup_opened");
@@ -78,10 +81,24 @@ function handleProfileFormSubmit(evt) {
 
 function openOrCloseAddCardPopup() {
   addCardPopup.classList.toggle("popup_opened");
+  titleInput.value = "";
+  linkInput.value = "";
+}
+
+function handleCardFormSubmit(evt) {
+  evt.preventDefault();
+
+  const novoCard = { name: titleInput.value, link: linkInput.value };
+  initialCards.push(novoCard);
+  loadCards(novoCard);
+
+  openOrCloseAddCardPopup();
 }
 
 editProfileButton.addEventListener("click", openOrCloseProfilePopup);
 closeEditProfileButton.addEventListener("click", openOrCloseProfilePopup);
-formElement.addEventListener("submit", handleProfileFormSubmit);
+formProfile.addEventListener("submit", handleProfileFormSubmit);
+
 addCardButton.addEventListener("click", openOrCloseAddCardPopup);
 closeAddCardButton.addEventListener("click", openOrCloseAddCardPopup);
+formCard.addEventListener("submit", handleCardFormSubmit);
