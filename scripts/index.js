@@ -64,6 +64,14 @@ function loadCards(card) {
     likeCardButton.classList.toggle("gallery__photo-button_active");
   });
 
+  const removeCardButton = cardTemplate.querySelector(
+    ".gallery__remove-button"
+  );
+  removeCardButton.addEventListener("click", () => {
+    initialCards.pop(card);
+    removeCardButton.closest(".gallery__photo-card").remove();
+  });
+
   document.querySelector(".gallery").prepend(cardTemplate);
 }
 
