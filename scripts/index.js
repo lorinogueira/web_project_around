@@ -57,7 +57,8 @@ function loadCards(card) {
     .querySelector("#card-template")
     .content.cloneNode("true");
   cardTemplate.querySelector(".gallery__photo-caption").textContent = card.name;
-  cardTemplate.querySelector(".gallery__photo").setAttribute("src", card.link);
+  const ImageCard = cardTemplate.querySelector(".gallery__photo");
+  ImageCard.setAttribute("src", card.link);
 
   const likeCardButton = cardTemplate.querySelector(".gallery__photo-button");
   likeCardButton.addEventListener("click", () => {
@@ -70,6 +71,20 @@ function loadCards(card) {
   removeCardButton.addEventListener("click", () => {
     initialCards.pop(card);
     removeCardButton.closest(".gallery__photo-card").remove();
+  });
+
+  ImageCard.addEventListener("click", () => {
+    const imagePopup = document.querySelector(".popup_funtion_open-image");
+    imagePopup.classList.toggle("popup_opened");
+    imagePopup.querySelector(".popup__photo-caption").textContent = card.name;
+    imagePopup.querySelector(".popup__photo").setAttribute("src", card.link);
+
+    const closeImagePopupButton = imagePopup.querySelector(
+      ".popup__close-button"
+    );
+    closeImagePopupButton.addEventListener("click", () => {
+      imagePopup.classList.toggle("popup_opened");
+    });
   });
 
   document.querySelector(".gallery").prepend(cardTemplate);
