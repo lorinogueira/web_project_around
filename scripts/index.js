@@ -1,25 +1,31 @@
 const container = document.querySelector(".page");
-const popup = container.querySelector(".popup");
-popup.classList.remove("popup_opened");
+const popups = container.querySelectorAll(".popup");
+popups.forEach((popup) => popup.classList.remove("popup_opened"));
 
-const formElement = container.querySelector(".popup__form");
-const nameInput = container.querySelector(".popup__input_content_name");
-const aboutmeInput = container.querySelector(".popup__input_content_aboutme");
+const editProfilePopup = container.querySelector(
+  ".popup_function_edit-profile"
+);
+const formElement = editProfilePopup.querySelector(".popup__form");
+const nameInput = editProfilePopup.querySelector(".popup__input_content_name");
+const aboutmeInput = editProfilePopup.querySelector(
+  ".popup__input_content_aboutme"
+);
 const nameProfile = container.querySelector(".profile__name");
 const aboutmeProfile = container.querySelector(".profile__aboutme");
 
-const editButton = container.querySelector(".profile__edit-button");
-const closeButton = container.querySelector(".popup__close-button");
-const submitButton = container.querySelector(".popup__submit-button");
+const addCardPopup = container.querySelector(".popup_function_add-card");
 
-function openPopup() {
-  popup.classList.add("popup_opened");
+const editProfileButton = container.querySelector(".profile__edit-button");
+const closeEditProfileButton = editProfilePopup.querySelector(
+  ".popup__close-button"
+);
+const addCardButton = container.querySelector(".profile__add-button");
+const closeAddCardButton = addCardPopup.querySelector(".popup__close-button");
+
+function openOrCloseProfilePopup() {
+  editProfilePopup.classList.toggle("popup_opened");
   nameInput.value = nameProfile.textContent;
   aboutmeInput.value = aboutmeProfile.textContent;
-}
-
-function closePopup() {
-  popup.classList.remove("popup_opened");
 }
 
 function handleProfileFormSubmit(evt) {
@@ -28,9 +34,15 @@ function handleProfileFormSubmit(evt) {
   nameProfile.textContent = nameInput.value;
   aboutmeProfile.textContent = aboutmeInput.value;
 
-  closePopup();
+  openOrCloseProfilePopup();
 }
 
-editButton.addEventListener("click", openPopup);
-closeButton.addEventListener("click", closePopup);
+function openOrCloseAddCardPopup() {
+  addCardPopup.classList.toggle("popup_opened");
+}
+
+editProfileButton.addEventListener("click", openOrCloseProfilePopup);
+closeEditProfileButton.addEventListener("click", openOrCloseProfilePopup);
 formElement.addEventListener("submit", handleProfileFormSubmit);
+addCardButton.addEventListener("click", openOrCloseAddCardPopup);
+closeAddCardButton.addEventListener("click", openOrCloseAddCardPopup);

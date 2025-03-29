@@ -46,11 +46,16 @@
   padding: 18px 0 13px;
 }
 
+.popup__input::placeholder {
+  color: #c4c4c4;
+}
+
 .popup__input:focus {
   border: 1px solid rgba(0, 0, 0, 0);
 }
 
-.popup__input_content_aboutme {
+.popup__input_content_aboutme,
+.popup__input_content_link {
   margin: 12px 0 48px 0;
 }
 
@@ -112,7 +117,8 @@
   .popup__form {
     margin: 0 22px;
   }
-  .popup__input_content_aboutme {
+  .popup__input_content_aboutme,
+  .popup__input_content_link {
     margin-bottom: 46px;
   }
   .popup__submit-button {
