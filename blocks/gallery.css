@@ -12,6 +12,7 @@
   height: 361px;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
 }
 
 .gallery__photo {
@@ -58,6 +59,24 @@
 .gallery__photo-button_active {
   background-image: url(../images/solid-heart-button.png);
   opacity: 100%;
+}
+
+.gallery__remove-button {
+  background-image: url(../images/trash-button.svg);
+  width: 18px;
+  height: 19.3px;
+  border: none;
+  background-color: #00000000;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}
+
+.gallery__remove-button:hover {
+  cursor: pointer;
+  opacity: 60%;
 }
 
 @media screen and (max-width: 635px) {
