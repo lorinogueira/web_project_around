@@ -59,6 +59,11 @@ function loadCards(card) {
   cardTemplate.querySelector(".gallery__photo-caption").textContent = card.name;
   cardTemplate.querySelector(".gallery__photo").setAttribute("src", card.link);
 
+  const likeCardButton = cardTemplate.querySelector(".gallery__photo-button");
+  likeCardButton.addEventListener("click", () => {
+    likeCardButton.classList.toggle("gallery__photo-button_active");
+  });
+
   document.querySelector(".gallery").prepend(cardTemplate);
 }
 

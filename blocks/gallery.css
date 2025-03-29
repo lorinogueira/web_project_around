@@ -54,7 +54,8 @@
   cursor: pointer;
 }
 
-.gallery__photo-button:active {
+.gallery__photo-button:active,
+.gallery__photo-button_active {
   background-image: url(../images/solid-heart-button.png);
   opacity: 100%;
 }
