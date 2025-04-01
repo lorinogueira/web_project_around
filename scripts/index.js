@@ -75,7 +75,7 @@ function loadCards(card) {
 
   ImageCard.addEventListener("click", () => {
     const imagePopup = document.querySelector(".popup_funtion_open-image");
-    imagePopup.classList.toggle("popup_opened");
+    imagePopup.classList.add("popup_opened");
     imagePopup.querySelector(".popup__photo-caption").textContent = card.name;
     imagePopup.querySelector(".popup__photo").setAttribute("src", card.link);
 
@@ -83,7 +83,7 @@ function loadCards(card) {
       ".popup__close-button"
     );
     closeImagePopupButton.addEventListener("click", () => {
-      imagePopup.classList.toggle("popup_opened");
+      imagePopup.classList.remove("popup_opened");
     });
   });
 
