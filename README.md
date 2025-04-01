@@ -15,6 +15,10 @@ O **Around The U.S.** é uma página interativa onde os usuários podem adiciona
 - **JavaScript:** Funcionalidade de interação com o usuário (abrir/fechar popups, editar perfil, adicionar e remover imagens).
 - **Responsividade:** O design foi feito para ser responsivo, adaptando-se a diferentes tamanhos de tela, com no mínimo 320px de largura.
 
+## 📸 Demonstração do projeto
+
+![Preview da página](./images/captura-de-tela.png)
+
 ## 🌐 Acesse o site:
 
 https://lorinogueira.github.io/web_project_around/
@@ -22,4 +26,4 @@ https://lorinogueira.github.io/web_project_around/
 ## 👩‍💻 Autor
 
 Desenvolvido por [Lorena Nogueira](https://github.com/lorinogueira).  
-Conecte-se comigo no [LinkedIn](https://www.linkedin.com/in/seu-perfil).
+Conecte-se comigo no [LinkedIn](https://www.linkedin.com/in/lorenamendes0/).
