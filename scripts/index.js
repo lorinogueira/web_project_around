@@ -15,8 +15,10 @@ const aboutmeProfile = container.querySelector(".profile__aboutme");
 
 const addCardPopup = container.querySelector(".popup_function_add-card");
 const formCard = addCardPopup.querySelector(".popup__form");
-let titleInput = addCardPopup.querySelector(".popup__input_content_title-card");
-let linkInput = addCardPopup.querySelector(".popup__input_content_link");
+const titleInput = addCardPopup.querySelector(
+  ".popup__input_content_title-card"
+);
+const linkInput = addCardPopup.querySelector(".popup__input_content_link");
 
 const editProfileButton = container.querySelector(".profile__edit-button");
 const closeEditProfileButton = editProfilePopup.querySelector(
@@ -52,7 +54,7 @@ const initialCards = [
   },
 ];
 
-function loadCards(card) {
+function loadCard(card) {
   const cardTemplate = document
     .querySelector("#card-template")
     .content.cloneNode("true");
@@ -90,8 +92,6 @@ function loadCards(card) {
   document.querySelector(".gallery").prepend(cardTemplate);
 }
 
-initialCards.forEach(loadCards);
-
 function openOrCloseProfilePopup() {
   editProfilePopup.classList.toggle("popup_opened");
   nameInput.value = nameProfile.textContent;
@@ -116,12 +116,14 @@ function openOrCloseAddCardPopup() {
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
 
-  const novoCard = { name: titleInput.value, link: linkInput.value };
-  initialCards.push(novoCard);
-  loadCards(novoCard);
+  const newCard = { name: titleInput.value, link: linkInput.value };
+  initialCards.push(newCard);
+  loadCard(newCard);
 
   openOrCloseAddCardPopup();
 }
+
+initialCards.forEach(loadCard);
 
 editProfileButton.addEventListener("click", openOrCloseProfilePopup);
 closeEditProfileButton.addEventListener("click", openOrCloseProfilePopup);
