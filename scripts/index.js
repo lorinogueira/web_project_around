@@ -63,34 +63,32 @@ const loadCard = (card) => {
   const ImageCard = cardTemplate.querySelector(".gallery__photo");
   ImageCard.setAttribute("src", card.link);
 
-  const likeCardButton = cardTemplate.querySelector(".gallery__photo-button");
-
-  // aplicar teoria Propagação e Delegação de Eventos (cap 3)
+  // Evento de curtir - aplicar teoria Propagação e Delegação de Eventos (cap 3)
+  const likeCardButton = cardTemplate.querySelector(".gallery__like-button");
   likeCardButton.addEventListener("click", () => {
-    likeCardButton.classList.toggle("gallery__photo-button_active");
+    likeCardButton.classList.toggle("gallery__like-button_active");
   });
 
+  // Evemto de remover - aplicar teoria Propagação e Delegação de Eventos (cap 3)
   const removeCardButton = cardTemplate.querySelector(
     ".gallery__remove-button"
   );
-
-  // aplicar teoria Propagação e Delegação de Eventos (cap 3)
   removeCardButton.addEventListener("click", () => {
     initialCards.pop(card);
     removeCardButton.closest(".gallery__photo-card").remove();
   });
 
-  // aplicar teoria Propagação e Delegação de Eventos (cap 3)
+  // Evento de abrir popup da imagem - aplicar teoria Propagação e Delegação de Eventos (cap 3)
   ImageCard.addEventListener("click", () => {
     const imagePopup = document.querySelector(".popup_funtion_open-image");
     imagePopup.classList.add("popup_opened");
     imagePopup.querySelector(".popup__photo-caption").textContent = card.name;
     imagePopup.querySelector(".popup__photo").setAttribute("src", card.link);
 
+    // Evento de fechar popup da imagem - aplicar teoria Propagação e Delegação de Eventos (cap 3)
     const closeImagePopupButton = imagePopup.querySelector(
       ".popup__close-button"
     );
-    // aplicar teoria Propagação e Delegação de Eventos (cap 3)
     closeImagePopupButton.addEventListener("click", () => {
       imagePopup.classList.remove("popup_opened");
     });
