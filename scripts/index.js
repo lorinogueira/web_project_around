@@ -54,12 +54,12 @@ const initialCards = [
   },
 ];
 
-function loadCard(card) {
-  //alterar para arrow function
+const loadCard = (card) => {
   const cardTemplate = document
     .querySelector("#card-template")
     .content.cloneNode("true");
   cardTemplate.querySelector(".gallery__photo-caption").textContent = card.name;
+
   const ImageCard = cardTemplate.querySelector(".gallery__photo");
   ImageCard.setAttribute("src", card.link);
 
@@ -97,33 +97,29 @@ function loadCard(card) {
   });
 
   document.querySelector(".gallery").prepend(cardTemplate);
-}
+};
 
-function openOrCloseProfilePopup() {
-  //alterar para arrow function
+const openOrCloseProfilePopup = () => {
   editProfilePopup.classList.toggle("popup_opened");
   nameInput.value = nameProfile.textContent;
   aboutmeInput.value = aboutmeProfile.textContent;
-}
+};
 
-function handleProfileFormSubmit(evt) {
-  //alterar para arrow function
+const handleProfileFormSubmit = (evt) => {
   evt.preventDefault();
 
   nameProfile.textContent = nameInput.value;
   aboutmeProfile.textContent = aboutmeInput.value;
 
   openOrCloseProfilePopup();
-}
+};
 
-function openOrCloseAddCardPopup() {
-  //alterar para arrow function
+const openOrCloseAddCardPopup = () => {
   addCardPopup.classList.toggle("popup_opened");
   formCard.reset();
-}
+};
 
-function handleCardFormSubmit(evt) {
-  //alterar para arrow function
+const handleCardFormSubmit = (evt) => {
   evt.preventDefault();
 
   const newCard = { name: titleInput.value, link: linkInput.value };
@@ -131,7 +127,7 @@ function handleCardFormSubmit(evt) {
   loadCard(newCard);
 
   openOrCloseAddCardPopup();
-}
+};
 
 const showError = (input, errorMessage) => {
   const inputError = document.querySelector(`.${input.id}-error`);
