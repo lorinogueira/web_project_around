@@ -44,8 +44,9 @@
       <div class="popup popup_function_edit-profile popup_opened">
         <div class="popup__container">
           <h2 class="popup__title">Editar perfil</h2>
-          <form class="popup__form">
+          <form class="popup__form" novalidate>
             <input
+              id="name-input"
               class="popup__input popup__input_content_name"
               type="text"
               minlength="2"
@@ -54,7 +55,9 @@
               placeholder="Nome"
               required
             />
+            <span class="name-input-error popup__input-error"></span>
             <input
+              id="aboutme-input"
               class="popup__input popup__input_content_aboutme"
               type="text"
               minlength="2"
@@ -63,6 +66,7 @@
               placeholder="Sobre mim"
               required
             />
+            <span class="aboutme-input-error popup__input-error"></span>
             <button class="popup__submit-button" type="submit">Salvar</button>
           </form>
           <button
@@ -74,8 +78,9 @@
       <div class="popup popup_function_add-card popup_opened">
         <div class="popup__container">
           <h2 class="popup__title">Novo Local</h2>
-          <form class="popup__form">
+          <form class="popup__form" novalidate>
             <input
+              id="title-input"
               class="popup__input popup__input_content_title-card"
               type="text"
               minlength="2"
@@ -84,13 +89,16 @@
               placeholder="Título"
               required
             />
+            <span class="title-input-error popup__input-error"></span>
             <input
+              id="link-input"
               class="popup__input popup__input_content_link"
               type="url"
               name="link"
               placeholder="Link de imagem"
               required
             />
+            <span class="link-input-error popup__input-error"></span>
             <button class="popup__submit-button" type="submit">Criar</button>
           </form>
           <button
