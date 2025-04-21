@@ -109,8 +109,7 @@ function handleProfileFormSubmit(evt) {
 
 function openOrCloseAddCardPopup() {
   addCardPopup.classList.toggle("popup_opened");
-  titleInput.value = "";
-  linkInput.value = "";
+  formCard.reset();
 }
 
 function handleCardFormSubmit(evt) {
