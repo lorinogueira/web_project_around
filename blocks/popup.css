@@ -54,11 +54,11 @@
   border: 1px solid rgba(0, 0, 0, 0);
 }
 
-.popup__input:invalid {
+.popup__input_type_error {
   border-bottom-color: #ff0000;
 }
 
-.popup__input_type_error {
+.popup__input-error_active {
   color: #ff0000;
   font-size: 12px;
   margin-top: 5px;

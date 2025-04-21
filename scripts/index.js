@@ -55,6 +55,7 @@ const initialCards = [
 ];
 
 function loadCard(card) {
+  //alterar para arrow function
   const cardTemplate = document
     .querySelector("#card-template")
     .content.cloneNode("true");
@@ -63,6 +64,8 @@ function loadCard(card) {
   ImageCard.setAttribute("src", card.link);
 
   const likeCardButton = cardTemplate.querySelector(".gallery__photo-button");
+
+  // aplicar teoria Propagação e Delegação de Eventos (cap 3)
   likeCardButton.addEventListener("click", () => {
     likeCardButton.classList.toggle("gallery__photo-button_active");
   });
@@ -70,11 +73,14 @@ function loadCard(card) {
   const removeCardButton = cardTemplate.querySelector(
     ".gallery__remove-button"
   );
+
+  // aplicar teoria Propagação e Delegação de Eventos (cap 3)
   removeCardButton.addEventListener("click", () => {
     initialCards.pop(card);
     removeCardButton.closest(".gallery__photo-card").remove();
   });
 
+  // aplicar teoria Propagação e Delegação de Eventos (cap 3)
   ImageCard.addEventListener("click", () => {
     const imagePopup = document.querySelector(".popup_funtion_open-image");
     imagePopup.classList.add("popup_opened");
@@ -84,6 +90,7 @@ function loadCard(card) {
     const closeImagePopupButton = imagePopup.querySelector(
       ".popup__close-button"
     );
+    // aplicar teoria Propagação e Delegação de Eventos (cap 3)
     closeImagePopupButton.addEventListener("click", () => {
       imagePopup.classList.remove("popup_opened");
     });
@@ -93,12 +100,14 @@ function loadCard(card) {
 }
 
 function openOrCloseProfilePopup() {
+  //alterar para arrow function
   editProfilePopup.classList.toggle("popup_opened");
   nameInput.value = nameProfile.textContent;
   aboutmeInput.value = aboutmeProfile.textContent;
 }
 
 function handleProfileFormSubmit(evt) {
+  //alterar para arrow function
   evt.preventDefault();
 
   nameProfile.textContent = nameInput.value;
@@ -108,11 +117,13 @@ function handleProfileFormSubmit(evt) {
 }
 
 function openOrCloseAddCardPopup() {
+  //alterar para arrow function
   addCardPopup.classList.toggle("popup_opened");
   formCard.reset();
 }
 
 function handleCardFormSubmit(evt) {
+  //alterar para arrow function
   evt.preventDefault();
 
   const newCard = { name: titleInput.value, link: linkInput.value };
@@ -122,12 +133,42 @@ function handleCardFormSubmit(evt) {
   openOrCloseAddCardPopup();
 }
 
+const showError = (input, errorMessage) => {
+  const inputError = document.querySelector(`.${input.id}-error`);
+  input.classList.add("popup__input_type_error");
+  inputError.textContent = errorMessage;
+  inputError.classList.add("popup__input-error_active");
+};
+
+const hideError = (input) => {
+  const inputError = document.querySelector(`.${input.id}-error`);
+  input.classList.remove("popup__input_type_error");
+  inputError.textContent = "";
+  inputError.classList.remove("popup__input-error_active");
+};
+
+const checkInputValidity = () => {
+  const formList = Array.from(document.querySelectorAll(".popup__form"));
+  formList.forEach((form) => {
+    const inputList = Array.from(form.querySelectorAll(".popup__input"));
+    inputList.forEach((input) => {
+      if (!input.validity.valid) {
+        showError(input, input.validationMessage);
+      } else {
+        hideError(input);
+      }
+    });
+  });
+};
+
 initialCards.forEach(loadCard);
 
 editProfileButton.addEventListener("click", openOrCloseProfilePopup);
 closeEditProfileButton.addEventListener("click", openOrCloseProfilePopup);
+formProfile.addEventListener("input", checkInputValidity);
 formProfile.addEventListener("submit", handleProfileFormSubmit);
 
 addCardButton.addEventListener("click", openOrCloseAddCardPopup);
 closeAddCardButton.addEventListener("click", openOrCloseAddCardPopup);
+formCard.addEventListener("input", checkInputValidity);
 formCard.addEventListener("submit", handleCardFormSubmit);
