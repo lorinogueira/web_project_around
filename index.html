@@ -48,6 +48,8 @@
             <input
               class="popup__input popup__input_content_name"
               type="text"
+              minlength="2"
+              maxlength="40"
               name="name"
               placeholder="Nome"
               required
@@ -55,6 +57,8 @@
             <input
               class="popup__input popup__input_content_aboutme"
               type="text"
+              minlength="2"
+              maxlength="200"
               name="aboutme"
               placeholder="Sobre mim"
               required
@@ -74,13 +78,15 @@
             <input
               class="popup__input popup__input_content_title-card"
               type="text"
+              minlength="2"
+              maxlength="30"
               name="title"
               placeholder="Título"
               required
             />
             <input
               class="popup__input popup__input_content_link"
-              type="text"
+              type="url"
               name="link"
               placeholder="Link de imagem"
               required
