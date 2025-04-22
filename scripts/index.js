@@ -58,43 +58,60 @@ const loadCard = (card) => {
   const cardTemplate = document
     .querySelector("#card-template")
     .content.cloneNode("true");
+
   cardTemplate.querySelector(".gallery__photo-caption").textContent = card.name;
-
-  const ImageCard = cardTemplate.querySelector(".gallery__photo");
-  ImageCard.setAttribute("src", card.link);
-
-  // Evento de curtir - aplicar teoria Propagação e Delegação de Eventos (cap 3)
-  const likeCardButton = cardTemplate.querySelector(".gallery__like-button");
-  likeCardButton.addEventListener("click", () => {
-    likeCardButton.classList.toggle("gallery__like-button_active");
-  });
-
-  // Evemto de remover - aplicar teoria Propagação e Delegação de Eventos (cap 3)
-  const removeCardButton = cardTemplate.querySelector(
-    ".gallery__remove-button"
-  );
-  removeCardButton.addEventListener("click", () => {
-    initialCards.pop(card);
-    removeCardButton.closest(".gallery__photo-card").remove();
-  });
-
-  // Evento de abrir popup da imagem - aplicar teoria Propagação e Delegação de Eventos (cap 3)
-  ImageCard.addEventListener("click", () => {
-    const imagePopup = document.querySelector(".popup_funtion_open-image");
-    imagePopup.classList.add("popup_opened");
-    imagePopup.querySelector(".popup__photo-caption").textContent = card.name;
-    imagePopup.querySelector(".popup__photo").setAttribute("src", card.link);
-
-    // Evento de fechar popup da imagem - aplicar teoria Propagação e Delegação de Eventos (cap 3)
-    const closeImagePopupButton = imagePopup.querySelector(
-      ".popup__close-button"
-    );
-    closeImagePopupButton.addEventListener("click", () => {
-      imagePopup.classList.remove("popup_opened");
-    });
-  });
+  const imageCard = cardTemplate.querySelector(".gallery__photo");
+  imageCard.src = card.link;
+  imageCard.alt = card.name;
 
   document.querySelector(".gallery").prepend(cardTemplate);
+};
+
+const likeOrDislikeCard = (container) => {
+  container.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("gallery__like-button")) {
+      evt.target.classList.toggle("gallery__like-button_active");
+    }
+  });
+};
+
+const removeCard = (container) => {
+  container.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("gallery__remove-button")) {
+      evt.target.closest(".gallery__photo-card").remove();
+    }
+  });
+};
+
+const openImagePopup = (container) => {
+  container.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("gallery__photo")) {
+      const imagePopup = container.querySelector(".popup_function_open-image");
+      imagePopup.classList.add("popup_opened");
+
+      const imageName = evt.currentTarget.querySelector(
+        ".gallery__photo-caption"
+      );
+      imagePopup.querySelector(".popup__photo-caption").textContent =
+        imageName.textContent;
+
+      const imageCard = evt.target;
+      imagePopup
+        .querySelector(".popup__photo")
+        .setAttribute("src", imageCard.src);
+
+      closeImagePopup(container);
+    }
+  });
+};
+
+const closeImagePopup = (container) => {
+  container.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("popup__close-button")) {
+      const imagePopup = container.querySelector(".popup_function_open-image");
+      imagePopup.classList.remove("popup_opened");
+    }
+  });
 };
 
 const openOrCloseProfilePopup = () => {
@@ -121,7 +138,6 @@ const handleCardFormSubmit = (evt) => {
   evt.preventDefault();
 
   const newCard = { name: titleInput.value, link: linkInput.value };
-  initialCards.push(newCard);
   loadCard(newCard);
 
   openOrCloseAddCardPopup();
@@ -156,6 +172,9 @@ const checkInputValidity = () => {
 };
 
 initialCards.forEach(loadCard);
+likeOrDislikeCard(container);
+removeCard(container);
+openImagePopup(container);
 
 editProfileButton.addEventListener("click", openOrCloseProfilePopup);
 closeEditProfileButton.addEventListener("click", openOrCloseProfilePopup);
