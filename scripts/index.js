@@ -143,31 +143,44 @@ const handleCardFormSubmit = (evt) => {
   openOrCloseAddCardPopup();
 };
 
-const showError = (input, errorMessage) => {
-  const inputError = document.querySelector(`.${input.id}-error`);
+const showError = (form, input, errorMessage) => {
+  const inputError = form.querySelector(`.${input.id}-error`);
   input.classList.add("popup__input_type_error");
   inputError.textContent = errorMessage;
   inputError.classList.add("popup__input-error_active");
 };
 
-const hideError = (input) => {
-  const inputError = document.querySelector(`.${input.id}-error`);
+const hideError = (form, input) => {
+  const inputError = form.querySelector(`.${input.id}-error`);
   input.classList.remove("popup__input_type_error");
   inputError.textContent = "";
   inputError.classList.remove("popup__input-error_active");
 };
 
-const checkInputValidity = () => {
+const isValid = (form, input) => {
+  if (!input.validity.valid) {
+    showError(form, input, input.validationMessage);
+  } else {
+    hideError(form, input);
+  }
+};
+
+const setInputEventListeners = (form) => {
+  const inputList = Array.from(form.querySelectorAll(".popup__input"));
+  inputList.forEach((input) => {
+    input.addEventListener("input", () => {
+      isValid(form, input);
+    });
+  });
+};
+
+const enableValidation = () => {
   const formList = Array.from(document.querySelectorAll(".popup__form"));
   formList.forEach((form) => {
-    const inputList = Array.from(form.querySelectorAll(".popup__input"));
-    inputList.forEach((input) => {
-      if (!input.validity.valid) {
-        showError(input, input.validationMessage);
-      } else {
-        hideError(input);
-      }
+    form.addEventListener("submit", (evt) => {
+      evt.preventDefault();
     });
+    setInputEventListeners(form);
   });
 };
 
@@ -175,13 +188,12 @@ initialCards.forEach(loadCard);
 likeOrDislikeCard(container);
 removeCard(container);
 openImagePopup(container);
+enableValidation();
 
 editProfileButton.addEventListener("click", openOrCloseProfilePopup);
 closeEditProfileButton.addEventListener("click", openOrCloseProfilePopup);
-formProfile.addEventListener("input", checkInputValidity);
 formProfile.addEventListener("submit", handleProfileFormSubmit);
 
 addCardButton.addEventListener("click", openOrCloseAddCardPopup);
 closeAddCardButton.addEventListener("click", openOrCloseAddCardPopup);
-formCard.addEventListener("input", checkInputValidity);
 formCard.addEventListener("submit", handleCardFormSubmit);
