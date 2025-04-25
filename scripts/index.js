@@ -148,6 +148,12 @@ const showError = (form, input, errorMessage) => {
   input.classList.add("popup__input_type_error");
   inputError.textContent = errorMessage;
   inputError.classList.add("popup__input-error_active");
+
+  form.parentElement.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("popup__close-button")) {
+      hideError(form, input);
+    }
+  });
 };
 
 const hideError = (form, input) => {
