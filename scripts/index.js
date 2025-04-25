@@ -171,11 +171,28 @@ const isValid = (form, input) => {
   }
 };
 
+const hasInvalidInput = (inputList) => {
+  return inputList.some((input) => {
+    return !input.validity.valid;
+  });
+};
+
+const toggleButtonState = (inputList, button) => {
+  if (hasInvalidInput(inputList)) {
+    button.classList.add("popup__submit-button_inactive");
+  } else {
+    button.classList.remove("popup__submit-button_inactive");
+  }
+};
+
 const setInputEventListeners = (form) => {
   const inputList = Array.from(form.querySelectorAll(".popup__input"));
+  const button = form.querySelector(".popup__submit-button");
+  toggleButtonState(inputList, button);
   inputList.forEach((input) => {
     input.addEventListener("input", () => {
       isValid(form, input);
+      toggleButtonState(inputList, button);
     });
   });
 };
