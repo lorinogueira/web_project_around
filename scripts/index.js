@@ -1,6 +1,4 @@
 const container = document.querySelector(".page");
-const popups = container.querySelectorAll(".popup");
-popups.forEach((popup) => popup.classList.remove("popup_opened"));
 
 const editProfilePopup = container.querySelector(
   ".popup_function_edit-profile"
@@ -114,8 +112,28 @@ const closeImagePopup = (container) => {
   });
 };
 
-const openOrCloseProfilePopup = () => {
-  editProfilePopup.classList.toggle("popup_opened");
+const closePopup = () => {
+  const popupList = Array.from(container.querySelectorAll(".popup"));
+  popupList.forEach((popup) => {
+    popup.addEventListener("click", (evt) => {
+      if (
+        !evt.target.closest(".popup__container") ||
+        evt.target.classList.contains("popup__close-button") ||
+        evt.target.classList.contains("popup__submit-button")
+      ) {
+        popup.classList.remove("popup_opened");
+      }
+    });
+    document.addEventListener("keydown", (evt) => {
+      if (evt.key == "Escape") {
+        popup.classList.remove("popup_opened");
+      }
+    });
+  });
+};
+
+const openProfilePopup = () => {
+  editProfilePopup.classList.add("popup_opened");
   nameInput.value = nameProfile.textContent;
   aboutmeInput.value = aboutmeProfile.textContent;
 };
@@ -125,12 +143,10 @@ const handleProfileFormSubmit = (evt) => {
 
   nameProfile.textContent = nameInput.value;
   aboutmeProfile.textContent = aboutmeInput.value;
-
-  openOrCloseProfilePopup();
 };
 
-const openOrCloseAddCardPopup = () => {
-  addCardPopup.classList.toggle("popup_opened");
+const openAddCardPopup = () => {
+  addCardPopup.classList.add("popup_opened");
   formCard.reset();
 };
 
@@ -139,8 +155,6 @@ const handleCardFormSubmit = (evt) => {
 
   const newCard = { name: titleInput.value, link: linkInput.value };
   loadCard(newCard);
-
-  openOrCloseAddCardPopup();
 };
 
 const showError = (form, input, errorMessage) => {
@@ -212,11 +226,10 @@ likeOrDislikeCard(container);
 removeCard(container);
 openImagePopup(container);
 enableValidation();
+closePopup();
 
-editProfileButton.addEventListener("click", openOrCloseProfilePopup);
-closeEditProfileButton.addEventListener("click", openOrCloseProfilePopup);
+editProfileButton.addEventListener("click", openProfilePopup);
 formProfile.addEventListener("submit", handleProfileFormSubmit);
 
-addCardButton.addEventListener("click", openOrCloseAddCardPopup);
-closeAddCardButton.addEventListener("click", openOrCloseAddCardPopup);
+addCardButton.addEventListener("click", openAddCardPopup);
 formCard.addEventListener("submit", handleCardFormSubmit);
