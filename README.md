@@ -8,12 +8,13 @@ O **Around The U.S.** é uma página interativa onde os usuários podem adiciona
 - **Galeria de fotos:** Veja, adicione ou remova fotos de paisagens de lugares.
 - **Interatividade:** Curta fotos da galeria.
 
-## 🛠️ Tecnologias Usadas
+## 🛠️ Tecnologias e Técnicas Usadas
 
 - **HTML:** Estrutura do site.
 - **CSS:** Estilização e design da página.
 - **JavaScript:** Funcionalidade de interação com o usuário (abrir/fechar popups, editar perfil, adicionar e remover imagens).
 - **Responsividade:** O design foi feito para ser responsivo, adaptando-se a diferentes tamanhos de tela, com no mínimo 320px de largura.
+- **Programação Orientada a Objetos**: Uso de classes para organizar o código JavaScript.
 
 ## 📸 Demonstração do projeto
 
