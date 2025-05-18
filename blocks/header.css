@@ -1,6 +1,5 @@
-.header {
+.header__container {
   max-width: 880px;
-  width: 100%;
   margin: 0 auto 40px;
 }
 
@@ -15,13 +14,13 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .header {
+  .header__container {
     margin: 0 60px 40px;
   }
 }
 
 @media screen and (max-width: 520px) {
-  .header {
+  .header__container {
     margin: 0 0 42px;
   }
   .header__logo {
