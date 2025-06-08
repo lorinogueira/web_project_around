@@ -1,5 +1,6 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import { Section } from "./Section.js";
 
 const initialCards = [
   {
@@ -28,16 +29,17 @@ const initialCards = [
   },
 ];
 
-const loadCard = (item) => {
-  const card = new Card(item, { templateSelector: "#card-template" });
-  const cardElement = card.generateCard();
-
-  document.querySelector(".gallery").prepend(cardElement);
-};
-
-initialCards.forEach((item) => {
-  loadCard(item);
-});
+const cardList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, { templateSelector: "#card-template" });
+      return card.generateCard();
+    },
+  },
+  ".gallery"
+);
+cardList.renderItems();
 
 const formList = Array.from(document.querySelectorAll(".popup__form"));
 
@@ -48,5 +50,3 @@ formList.forEach((form) => {
   );
   formValidator.enableValidation();
 });
-
-export { loadCard };

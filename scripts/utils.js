@@ -1,5 +1,3 @@
-import { loadCard } from "./index.js";
-
 const container = document.querySelector(".page");
 
 const editProfilePopup = container.querySelector(
