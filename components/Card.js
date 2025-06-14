@@ -1,8 +1,9 @@
 class Card {
-  constructor(item, { templateSelector }) {
+  constructor(item, { templateSelector }, handleCardClick) {
     this._name = item.name;
     this._link = item.link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -35,13 +36,6 @@ class Card {
     evt.target.closest(".gallery__photo-card").remove();
   }
 
-  _openImagePopup() {
-    const imagePopup = document.querySelector(".popup_function_open-image");
-    imagePopup.classList.add("popup_opened");
-    imagePopup.querySelector(".popup__photo-caption").textContent = this._name;
-    imagePopup.querySelector(".popup__photo").setAttribute("src", this._link);
-  }
-
   _setEventListeners() {
     this._item
       .querySelector(".gallery__like-button")
@@ -56,7 +50,7 @@ class Card {
     this._item
       .querySelector(".gallery__photo")
       .addEventListener("click", () => {
-        this._openImagePopup();
+        this._handleCardClick();
       });
   }
 }
