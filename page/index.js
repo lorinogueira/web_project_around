@@ -82,7 +82,9 @@ const userInfo = new UserInfo({
   avatarSelector: ".profile__avatar",
 });
 
-const api = new Api();
+const api = new Api(
+  "https://around-api.pt-br.tripleten-services.com/v1/users/me"
+);
 
 api.getInfoFromApi().then((info) => {
   userInfo.setUserInfo({
