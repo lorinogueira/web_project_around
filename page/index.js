@@ -35,7 +35,6 @@ const initialCards = [
 
 const cardList = new Section(
   {
-    items: initialCards,
     renderer: (item) => {
       const card = new Card(
         item,
@@ -52,7 +51,14 @@ const cardList = new Section(
   },
   ".gallery"
 );
-cardList.renderItems();
+
+const api = new Api();
+
+api
+  .getInfoFromApi("https://around-api.pt-br.tripleten-services.com/v1/cards")
+  .then((cardsFromApi) => {
+    cardList.renderItems(cardsFromApi);
+  });
 
 const formList = Array.from(document.querySelectorAll(".popup__form"));
 
@@ -81,8 +87,6 @@ const userInfo = new UserInfo({
   aboutSelector: ".profile__about",
   avatarSelector: ".profile__avatar",
 });
-
-const api = new Api();
 
 api
   .getInfoFromApi("https://around-api.pt-br.tripleten-services.com/v1/users/me")
