@@ -1,10 +1,8 @@
 class Api {
-  constructor(url) {
-    this._url = url;
-  }
+  constructor() {}
 
-  getInfoFromApi() {
-    return fetch(this._url, {
+  getInfoFromApi(url) {
+    return fetch(url, {
       headers: {
         authorization: "a1ae33fa-92c8-4fb4-90f3-3874e08185b4",
       },

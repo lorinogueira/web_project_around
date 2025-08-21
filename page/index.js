@@ -82,17 +82,17 @@ const userInfo = new UserInfo({
   avatarSelector: ".profile__avatar",
 });
 
-const api = new Api(
-  "https://around-api.pt-br.tripleten-services.com/v1/users/me"
-);
+const api = new Api();
 
-api.getInfoFromApi().then((info) => {
-  userInfo.setUserInfo({
-    name: info.name,
-    about: info.about,
-    avatar: info.avatar,
+api
+  .getInfoFromApi("https://around-api.pt-br.tripleten-services.com/v1/users/me")
+  .then((info) => {
+    userInfo.setUserInfo({
+      name: info.name,
+      about: info.about,
+      avatar: info.avatar,
+    });
   });
-});
 
 const popupWithFormEditProfile = new PopupWithForm(
   ".popup_function_edit-profile",
