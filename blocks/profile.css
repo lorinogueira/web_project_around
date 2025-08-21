@@ -28,7 +28,7 @@
   grid-area: name;
 }
 
-.profile__aboutme {
+.profile__about {
   grid-area: aboutme;
 }
 
@@ -107,7 +107,7 @@
     text-align: center;
     margin-bottom: 14px;
   }
-  .profile__aboutme {
+  .profile__about {
     font-size: 14px;
     line-height: 16.94px;
     text-align: center;
@@ -134,7 +134,7 @@
     font-size: 22px;
     line-height: 26.63px;
   }
-  .profile__aboutme {
+  .profile__about {
     font-size: 14px;
     line-height: 16.94px;
   }

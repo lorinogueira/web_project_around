@@ -25,11 +25,11 @@ class PopupWithForm extends Popup {
       const nameInput = this._containerPopup.querySelector(
         ".popup__input_content_name"
       );
-      const aboutmeInput = this._containerPopup.querySelector(
-        ".popup__input_content_aboutme"
+      const aboutInput = this._containerPopup.querySelector(
+        ".popup__input_content_about"
       );
       nameInput.value = userInfo.name;
-      aboutmeInput.value = userInfo.aboutme;
+      aboutInput.value = userInfo.about;
     }
   }
 

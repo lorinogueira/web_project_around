@@ -4,6 +4,7 @@ import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
+import { Api } from "../components/Api.js";
 
 const initialCards = [
   {
@@ -77,7 +78,18 @@ popupWithFormAddCard.setEventListeners();
 
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
-  aboutmeSelector: ".profile__aboutme",
+  aboutSelector: ".profile__about",
+  avatarSelector: ".profile__avatar",
+});
+
+const api = new Api();
+
+api.getInfoFromApi().then((info) => {
+  userInfo.setUserInfo({
+    name: info.name,
+    about: info.about,
+    avatar: info.avatar,
+  });
 });
 
 const popupWithFormEditProfile = new PopupWithForm(
