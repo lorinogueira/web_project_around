@@ -72,12 +72,25 @@ formList.forEach((form) => {
 
 const popupWithFormAddCard = new PopupWithForm(
   ".popup_function_add-card",
-  (item) => {
-    const card = new Card(item, { templateSelector: "#card-template" }, () => {
-      const popupWithImage = new PopupWithImage(".popup_function_open-image");
-      popupWithImage.open(item);
-    });
-    cardList.addItem(card.generateCard());
+  (cardInfos) => {
+    api
+      .postCard(
+        "https://around-api.pt-br.tripleten-services.com/v1/cards/",
+        cardInfos
+      )
+      .then((newCard) => {
+        const card = new Card(
+          newCard,
+          { templateSelector: "#card-template" },
+          () => {
+            const popupWithImage = new PopupWithImage(
+              ".popup_function_open-image"
+            );
+            popupWithImage.open(newCard);
+          }
+        );
+        cardList.addItem(card.generateCard());
+      });
   }
 );
 popupWithFormAddCard.setEventListeners();
@@ -102,7 +115,7 @@ const popupWithFormEditProfile = new PopupWithForm(
   ".popup_function_edit-profile",
   (item) => {
     api
-      .updateInfo(
+      .updateProfile(
         "https://around-api.pt-br.tripleten-services.com/v1/users/me",
         item
       )
