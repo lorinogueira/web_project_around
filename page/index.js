@@ -101,7 +101,18 @@ api
 const popupWithFormEditProfile = new PopupWithForm(
   ".popup_function_edit-profile",
   (item) => {
-    userInfo.setUserInfo(item);
+    api
+      .updateInfo(
+        "https://around-api.pt-br.tripleten-services.com/v1/users/me",
+        item
+      )
+      .then((info) => {
+        userInfo.setUserInfo({
+          name: info.name,
+          about: info.about,
+          avatar: info.avatar,
+        });
+      });
   }
 );
 popupWithFormEditProfile.setEventListeners();
