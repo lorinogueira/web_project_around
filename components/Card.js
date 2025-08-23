@@ -1,9 +1,11 @@
 class Card {
-  constructor(item, { templateSelector }, handleCardClick) {
+  constructor(item, { templateSelector }, handleCardClick, handleLikeClick) {
     this._name = item.name;
     this._link = item.link;
+    this._isLiked = item.isLiked;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleLikeClick = handleLikeClick;
   }
 
   _getTemplate() {
@@ -18,10 +20,14 @@ class Card {
 
     const imageCard = this._item.querySelector(".gallery__photo");
     const nameCard = this._item.querySelector(".gallery__photo-caption");
+    const likeButton = this._item.querySelector(".gallery__like-button");
 
     imageCard.src = this._link;
     imageCard.alt = this._name;
     nameCard.textContent = this._name;
+    this._isLiked
+      ? likeButton.classList.add("gallery__like-button_active")
+      : likeButton.classList.remove("gallery__like-button_active");
 
     this._setEventListeners();
 
@@ -29,7 +35,10 @@ class Card {
   }
 
   _likeOrDislikeCard(evt) {
-    evt.target.classList.toggle("gallery__like-button_active");
+    this._isLiked = !this._isLiked;
+    this._isLiked
+      ? evt.target.classList.add("gallery__like-button_active")
+      : evt.target.classList.remove("gallery__like-button_active");
   }
 
   _removeCard(evt) {
@@ -40,7 +49,7 @@ class Card {
     this._item
       .querySelector(".gallery__like-button")
       .addEventListener("click", (evt) => {
-        this._likeOrDislikeCard(evt);
+        this._handleLikeClick(evt);
       });
     this._item
       .querySelector(".gallery__remove-button")

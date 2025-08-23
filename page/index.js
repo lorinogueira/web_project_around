@@ -44,6 +44,17 @@ const cardList = new Section(
             ".popup_function_open-image"
           );
           popupWithImage.open(item);
+        },
+        (evt) => {
+          api
+            .updateLike(
+              `https://around-api.pt-br.tripleten-services.com/v1/cards/${item._id}/likes`,
+              item
+            )
+            .then((updatedLike) => {
+              item.isLiked = updatedLike.isLiked;
+              evt.target.classList.toggle("gallery__like-button_active");
+            });
         }
       );
       return card.generateCard();
@@ -55,7 +66,7 @@ const cardList = new Section(
 const api = new Api();
 
 api
-  .getInfoFromApi("https://around-api.pt-br.tripleten-services.com/v1/cards")
+  .getInfoFromApi("https://around-api.pt-br.tripleten-services.com/v1/cards/")
   .then((cardsFromApi) => {
     cardList.renderItems(cardsFromApi);
   });
@@ -78,18 +89,30 @@ const popupWithFormAddCard = new PopupWithForm(
         "https://around-api.pt-br.tripleten-services.com/v1/cards/",
         cardInfos
       )
-      .then((newCard) => {
+      .then((item) => {
         const card = new Card(
-          newCard,
+          item,
           { templateSelector: "#card-template" },
           () => {
             const popupWithImage = new PopupWithImage(
               ".popup_function_open-image"
             );
-            popupWithImage.open(newCard);
+            popupWithImage.open(item);
+          },
+          (evt) => {
+            api
+              .updateLike(
+                `https://around-api.pt-br.tripleten-services.com/v1/cards/${item._id}/likes`,
+                item
+              )
+              .then((updatedLike) => {
+                item.isLiked = updatedLike.isLiked;
+                evt.target.classList.toggle("gallery__like-button_active");
+              });
           }
         );
         cardList.addItem(card.generateCard());
+        console.log(item);
       });
   }
 );
