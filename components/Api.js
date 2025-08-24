@@ -50,6 +50,20 @@ class Api {
     });
   }
 
+  deleteCard(url) {
+    return fetch(url, {
+      method: "DELETE",
+      headers: {
+        authorization: "a1ae33fa-92c8-4fb4-90f3-3874e08185b4",
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    });
+  }
+
   updateLike(url, item) {
     let method;
 

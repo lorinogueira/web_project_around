@@ -79,7 +79,16 @@ const cardList = new Section(
         },
         () => {
           const popupWithConfirmation = new PopupWithConfirmation(
-            ".popup_function_remove-card"
+            ".popup_function_remove-card",
+            () => {
+              api
+                .deleteCard(
+                  `https://around-api.pt-br.tripleten-services.com/v1/cards/${item._id}`
+                )
+                .then(() => {
+                  card.removeCard();
+                });
+            }
           );
           popupWithConfirmation.open(item);
         }
@@ -124,10 +133,24 @@ const popupWithFormAddCard = new PopupWithForm(
                 item.isLiked = updatedLike.isLiked;
                 evt.target.classList.toggle("gallery__like-button_active");
               });
+          },
+          () => {
+            const popupWithConfirmation = new PopupWithConfirmation(
+              ".popup_function_remove-card",
+              () => {
+                api
+                  .deleteCard(
+                    `https://around-api.pt-br.tripleten-services.com/v1/cards/${item._id}`
+                  )
+                  .then(() => {
+                    card.removeCard();
+                  });
+              }
+            );
+            popupWithConfirmation.open(item);
           }
         );
         cardList.addItem(card.generateCard());
-        console.log(item);
       });
   }
 );

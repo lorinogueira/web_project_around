@@ -16,10 +16,8 @@ class Card {
   }
 
   _getTemplate() {
-    const cardTemplate = document
-      .querySelector(this._templateSelector)
-      .content.cloneNode(true);
-    return cardTemplate;
+    const cardTemplate = document.querySelector(this._templateSelector);
+    return cardTemplate.content.firstElementChild.cloneNode(true);
   }
 
   generateCard() {
@@ -48,7 +46,16 @@ class Card {
       : evt.target.classList.remove("gallery__like-button_active");
   }
 
+  removeCard() {
+    this._item.remove();
+  }
+
   _setEventListeners() {
+    this._item
+      .querySelector(".gallery__photo")
+      .addEventListener("click", () => {
+        this._handleCardClick();
+      });
     this._item
       .querySelector(".gallery__like-button")
       .addEventListener("click", (evt) => {
@@ -58,11 +65,6 @@ class Card {
       .querySelector(".gallery__remove-button")
       .addEventListener("click", () => {
         this._handleRemoveClick();
-      });
-    this._item
-      .querySelector(".gallery__photo")
-      .addEventListener("click", () => {
-        this._handleCardClick();
       });
   }
 }
