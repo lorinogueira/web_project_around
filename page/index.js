@@ -8,6 +8,7 @@ import { UserInfo } from "../components/UserInfo.js";
 import { Api } from "../components/Api.js";
 
 const formList = Array.from(document.querySelectorAll(".popup__form"));
+const submitButton = document.querySelector(".popup__submit-button");
 
 formList.forEach((form) => {
   const formValidator = new FormValidator(
@@ -38,6 +39,7 @@ api
 const popupWithFormEditProfile = new PopupWithForm(
   ".popup_function_edit-profile",
   (item) => {
+    document.querySelector("#edit-profile-button").textContent = "Salvando...";
     api
       .updateProfile(
         "https://around-api.pt-br.tripleten-services.com/v1/users/me",
@@ -53,6 +55,26 @@ const popupWithFormEditProfile = new PopupWithForm(
   }
 );
 popupWithFormEditProfile.setEventListeners();
+
+const popupWithFormEditAvatar = new PopupWithForm(
+  ".popup_function_edit-avatar",
+  (item) => {
+    document.querySelector("#avatar-button").textContent = "Salvando...";
+    api
+      .updateAvatar(
+        "https://around-api.pt-br.tripleten-services.com/v1/users/me/avatar",
+        item
+      )
+      .then((info) => {
+        userInfo.setUserInfo({
+          name: info.name,
+          about: info.about,
+          avatar: info.avatar,
+        });
+      });
+  }
+);
+popupWithFormEditAvatar.setEventListeners();
 
 const cardList = new Section(
   {
@@ -102,12 +124,13 @@ const cardList = new Section(
 api
   .getInfoFromApi("https://around-api.pt-br.tripleten-services.com/v1/cards/")
   .then((cardsFromApi) => {
-    cardList.renderItems(cardsFromApi);
+    cardList.renderItems(cardsFromApi.reverse());
   });
 
 const popupWithFormAddCard = new PopupWithForm(
   ".popup_function_add-card",
   (cardInfos) => {
+    document.querySelector("#add-card-button").textContent = "Criando...";
     api
       .postCard(
         "https://around-api.pt-br.tripleten-services.com/v1/cards/",
@@ -158,6 +181,7 @@ popupWithFormAddCard.setEventListeners();
 
 const addCardButton = document.querySelector(".profile__add-button");
 const editProfileButton = document.querySelector(".profile__edit-button");
+const editAvatarButton = document.querySelector(".profile__avatar-button");
 
 addCardButton.addEventListener("click", () => {
   popupWithFormAddCard.open();
@@ -165,4 +189,8 @@ addCardButton.addEventListener("click", () => {
 
 editProfileButton.addEventListener("click", () => {
   popupWithFormEditProfile.open(userInfo.getUserInfo());
+});
+
+editAvatarButton.addEventListener("click", () => {
+  popupWithFormEditAvatar.open();
 });

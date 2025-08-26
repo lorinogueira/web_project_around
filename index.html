@@ -70,7 +70,40 @@
               required
             />
             <span class="about-input-error popup__input-error"></span>
-            <button class="popup__submit-button" type="submit">Salvar</button>
+            <button
+              id="edit-profile-button"
+              class="popup__submit-button"
+              type="submit"
+            >
+              Salvar
+            </button>
+          </form>
+          <button
+            class="popup__close-button popup__close-button_position_top"
+            type="button"
+          ></button>
+        </div>
+      </div>
+      <div class="popup popup_function_edit-avatar">
+        <div class="popup__container popup__container-form">
+          <h2 class="popup__title">Alterar a foto do perfil</h2>
+          <form class="popup__form" novalidate>
+            <input
+              id="avatar-input"
+              class="popup__input popup__input_content_link"
+              type="url"
+              name="avatar"
+              placeholder="Link de imagem"
+              required
+            />
+            <span class="avatar-input-error popup__input-error"></span>
+            <button
+              id="avatar-button"
+              class="popup__submit-button"
+              type="submit"
+            >
+              Salvar
+            </button>
           </form>
           <button
             class="popup__close-button popup__close-button_position_top"
@@ -102,7 +135,13 @@
               required
             />
             <span class="link-input-error popup__input-error"></span>
-            <button class="popup__submit-button" type="submit">Criar</button>
+            <button
+              id="add-card-button"
+              class="popup__submit-button"
+              type="submit"
+            >
+              Criar
+            </button>
           </form>
           <button
             class="popup__close-button popup__close-button_position_top"
